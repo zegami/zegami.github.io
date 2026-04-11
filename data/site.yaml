@@ -7,7 +7,7 @@ hero:
     Zegami is a visual data exploration platform that lets you interactively
     browse, filter, and compare thousands of data points: images, documents,
     time series, geospatial, all in a single view.
-  tagline: "If you can use a web browser, you can use Zegami."
+  tagline: "Not a dashboard. Not a database."
   primaryCta:
     label: "Explore examples"
     url: "https://app.zegami.com"
