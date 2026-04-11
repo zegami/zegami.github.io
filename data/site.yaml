@@ -38,7 +38,7 @@ capabilities:
         Browse thousands of items as a visual grid. Sort, filter, and group by
         any field. Zoom from overview to individual record in a click.
       screenshot:
-        src: "images/capabilities/visual-exploration.png"
+        src: "images/capabilities/visual-exploration.gif"
         alt: "Grid view with colour-coded grouping"
     - title: "Image collections"
       body: >-
