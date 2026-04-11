@@ -86,18 +86,17 @@ p { margin: 0 0 1em; }
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
   color: var(--color-text);
   text-decoration: none;
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: -0.01em;
 }
 
 .brand:hover { text-decoration: none; }
 
-.brand__mark { color: var(--color-accent); display: inline-flex; }
-.brand__wordmark { }
+.brand__logo {
+  display: block;
+  height: 30px;
+  width: auto;
+}
 
 .site-nav {
   display: flex;
@@ -106,8 +105,8 @@ p { margin: 0 0 1em; }
   font-size: 0.95rem;
 }
 
-.site-nav a { color: var(--color-text); font-weight: 500; }
-.site-nav a:hover { color: var(--color-accent); text-decoration: none; }
+.site-nav a:not(.button) { color: var(--color-text); font-weight: 500; }
+.site-nav a:not(.button):hover { color: var(--color-accent); text-decoration: none; }
 
 @media (max-width: 640px) {
   .site-nav a:not(.button) { display: none; }
@@ -158,26 +157,79 @@ p { margin: 0 0 1em; }
 
 .hero {
   position: relative;
-  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(4rem, 10vw, 7rem);
+  padding: clamp(5rem, 10vw, 8rem) 0;
   background:
-    radial-gradient(circle at 85% 0%, rgba(123, 94, 167, 0.22), transparent 55%),
+    radial-gradient(circle at 85% 10%, rgba(123, 94, 167, 0.28), transparent 55%),
     linear-gradient(180deg, #efe7f5 0%, var(--color-bg) 100%);
   overflow: hidden;
+  isolation: isolate;
+}
+
+/* Screenshot sits behind the content, bleeding off the right edge of the
+   viewport and fading into the lavender on the left via a CSS mask. */
+.hero__backdrop {
+  position: absolute;
+  top: 50%;
+  right: clamp(-6rem, -4vw, -1rem);
+  width: min(72vw, 1100px);
+  aspect-ratio: 16 / 10;
+  transform: translateY(-50%);
+  z-index: 0;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 40px 120px -20px rgba(26, 26, 46, 0.28);
+  mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 14%,
+    #000 32%,
+    #000 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    100deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 14%,
+    #000 32%,
+    #000 100%
+  );
+}
+
+.hero__backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+}
+
+.hero__backdrop--placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--color-text-muted);
+  border: 1px dashed var(--color-border);
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 0.875rem;
+  padding: 1.5rem;
+  text-align: center;
+  mask-image: none;
+  -webkit-mask-image: none;
+  box-shadow: none;
 }
 
 .hero__inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  position: relative;
+  z-index: 1;
+  min-height: clamp(360px, 42vw, 480px);
+  display: flex;
   align-items: center;
-  gap: clamp(2rem, 5vw, 4rem);
 }
 
-@media (max-width: 900px) {
-  .hero__inner { grid-template-columns: 1fr; }
+.hero__copy {
+  max-width: min(38rem, 55%);
 }
 
 .hero__headline {
-  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  font-size: clamp(2.5rem, 5.5vw, 4rem);
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: 1.25rem;
@@ -196,22 +248,30 @@ p { margin: 0 0 1em; }
   flex-wrap: wrap;
 }
 
-.hero__media {
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-card);
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-}
+/* On narrow viewports, drop the backdrop mask/positioning and stack
+   the screenshot under the copy as a normal block. */
+@media (max-width: 900px) {
+  .hero__inner {
+    min-height: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
 
-.hero__media--placeholder {
-  display: grid;
-  place-items: center;
-  color: var(--color-text-muted);
-  border: 1px dashed var(--color-border);
-  font-size: 0.875rem;
-  padding: 1.5rem;
-  text-align: center;
+  .hero__copy {
+    max-width: 100%;
+  }
+
+  .hero__backdrop {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    mask-image: none;
+    -webkit-mask-image: none;
+    box-shadow: 0 20px 60px -15px rgba(26, 26, 46, 0.2);
+    margin-top: 2rem;
+  }
 }
 
 /* ---- sections ---- */
@@ -268,7 +328,7 @@ p { margin: 0 0 1em; }
 }
 
 .card-grid--capabilities {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 }
 
 .card-grid--use-cases {
@@ -286,9 +346,10 @@ p { margin: 0 0 1em; }
 .card {
   background: var(--color-surface);
   border-radius: var(--radius-md);
-  padding: 1.5rem 1.5rem 1.75rem;
+  padding: 1.75rem 1.75rem 2rem;
   box-shadow: var(--shadow-card);
   transition: transform 160ms ease, box-shadow 160ms ease;
+  overflow: hidden;
 }
 
 .card:hover {
@@ -296,15 +357,21 @@ p { margin: 0 0 1em; }
   box-shadow: var(--shadow-card-hover);
 }
 
-.card--compact { padding: 1.5rem; }
+.card--compact { padding: 1.75rem; }
 .card--contact { text-align: center; }
 
 .card__media {
   aspect-ratio: 16 / 10;
-  border-radius: var(--radius-sm);
-  margin: -0.5rem -0.5rem 1.25rem;
+  margin: -1.75rem -1.75rem 1.5rem;
   overflow: hidden;
   background: var(--color-bg);
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card__media--placeholder {
@@ -312,7 +379,7 @@ p { margin: 0 0 1em; }
   place-items: center;
   color: var(--color-text-muted);
   font-size: 0.8rem;
-  border: 1px dashed var(--color-border);
+  border-bottom: 1px dashed var(--color-border);
 }
 
 .card__title {
@@ -332,6 +399,34 @@ p { margin: 0 0 1em; }
   letter-spacing: 0.06em;
   color: var(--color-text-muted);
   margin: 0 0 0.5rem;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.card__header .card__title {
+  margin-bottom: 0;
+}
+
+.card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  background: rgba(123, 94, 167, 0.12);
+  color: var(--color-accent);
+}
+
+.card__icon svg {
+  width: 24px;
+  height: 24px;
 }
 
 /* ---- steps ---- */

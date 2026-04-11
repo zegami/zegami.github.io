@@ -20,4 +20,5 @@
 {{ $css := resources.Get "css/main.css" | resources.Minify | resources.Fingerprint }}
 <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 
-<link rel="icon" href="/favicon.ico">
+{{ $favicon := resources.Get "images/zegami-mark.svg" | fingerprint }}
+<link rel="icon" type="image/svg+xml" href="{{ $favicon.RelPermalink }}">

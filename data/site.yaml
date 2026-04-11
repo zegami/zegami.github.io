@@ -5,17 +5,18 @@ hero:
   headline: "See your data. All of it."
   subheadline: >-
     Zegami is a visual data exploration platform that lets you interactively
-    browse, filter, and compare thousands of data points — images, documents,
-    time series, geospatial — in a single view.
+    browse, filter, and compare thousands of data points: images, documents,
+    time series, geospatial, all in a single view.
   primaryCta:
     label: "Explore examples"
     url: "https://app.zegami.com"
   secondaryCta:
     label: "Get in touch"
     url: "#contact"
-  # Screenshot slot — replace with an actual image once captured.
+  # Screenshot paths point at static/<src>. The template uses fileExists —
+  # if the file isn't there, the dashed placeholder renders instead.
   screenshot:
-    src: ""
+    src: "images/hero.png"
     alt: "Zegami collection view showing a grid of image tiles with a filter panel"
 
 problem:
@@ -24,7 +25,7 @@ problem:
     Spreadsheets flatten everything into rows. Dashboards show you summaries.
     Neither lets you actually look at your data.
 
-    Zegami gives you the full picture — literally. Lay out thousands of images,
+    Zegami gives you the full picture, literally. Lay out thousands of images,
     data points, or documents visually. Filter, sort, group, and zoom in on
     what matters. Spot patterns that no chart would show you.
 
@@ -36,57 +37,63 @@ capabilities:
         Browse thousands of items as a visual grid. Sort, filter, and group by
         any field. Zoom from overview to individual record in a click.
       screenshot:
-        src: ""
+        src: "images/capabilities/visual-exploration.png"
         alt: "Grid view with colour-coded grouping"
     - title: "Image collections"
       body: >-
-        Purpose-built for datasets where images matter — camera traps,
+        Purpose-built for datasets where images matter: camera traps,
         microscopy, aerial surveys, historical archives. See images alongside
         metadata, not buried in folders.
       screenshot:
-        src: ""
+        src: "images/capabilities/image-collections.gif"
         alt: "Image collection with metadata panel open"
     - title: "Geospatial"
       body: >-
         Plot your data on a map. Filter spatially. Understand how location
         relates to everything else in your dataset.
       screenshot:
-        src: ""
-        alt: "Map view with clustered points"
+        src: "images/capabilities/geospatial.png"
+        alt: "Zegami map view plotting the National Herbarium of Victoria collection as clustered points across Australia and New Zealand"
     - title: "Time series & charts"
       body: >-
         Layer in temporal data. Compare trends across groups. Link chart
         selections back to individual records.
       screenshot:
-        src: ""
+        src: "images/capabilities/time-series.jpg"
         alt: "Chart and time series view"
     - title: "Filtering & faceting"
       body: >-
-        Combine filters across any dimension — numeric ranges, categories,
+        Combine filters across any dimension numeric ranges, categories,
         text search, date ranges. Every filter updates every view in real time.
       screenshot:
-        src: ""
+        src: "images/capabilities/filtering.jpg"
         alt: "Filter panel with multiple active filters"
 
 useCases:
   heading: "Proven across sectors"
+  # `icon` refers to a file in layouts/partials/icons/<icon>.svg.
+  # Lucide icons: https://lucide.dev/icons
   items:
     - title: "Life sciences"
+      icon: "microscope"
       body: >-
         High-throughput imaging, phenotyping, pathology, microscopy. Researchers
         use Zegami to visually QA and explore imaging datasets that are too
         large to review manually.
     - title: "Environmental monitoring"
+      icon: "leaf"
       body: >-
         Camera trap review, biodiversity surveys, habitat assessment. Explore
         species detections across sites, time periods, and sensor types in a
         single view.
     - title: "Digital humanities"
+      icon: "book-open"
       body: >-
         Museum collections, historical archives, manuscript analysis. Scholars
         use Zegami to explore and annotate large visual collections without
         specialist software.
     - title: "Industrial & enterprise"
+      icon: "factory"
       body: >-
         Quality control imaging, asset inspection, document review. Any
         workflow where people need to visually assess large volumes of data.
@@ -96,7 +103,7 @@ howItWorks:
   steps:
     - title: "Connect your data"
       body: >-
-        Upload a spreadsheet, connect to an API, or point Zegami at an image
+        From a simple spreadsheet, connect to an API, or point Zegami at an image
         folder. Structured and unstructured data, together.
     - title: "Explore visually"
       body: >-
@@ -106,14 +113,14 @@ howItWorks:
     - title: "Share and collaborate"
       body: >-
         Publish collections for your team or publicly. Save views. Export
-        filtered subsets. No training required — if you can use a web browser,
+        filtered subsets. No training required, if you can use a web browser,
         you can use Zegami.
 
 differentiator:
   heading: "Not a dashboard. Not a database."
   body: |
     Dashboards aggregate your data into charts. Databases let you query it.
-    Zegami lets you *see* it — every item, every image, every data point —
+    Zegami lets you *see* it every item, every image, every data point
     and navigate it visually.
 
     Built for datasets with thousands to millions of records. Born from
@@ -123,7 +130,7 @@ differentiator:
 examples:
   heading: "See it in action"
   body: >-
-    Browse public collections on Zegami — no account needed.
+    Browse public collections on Zegami no account needed.
   cta:
     label: "Explore examples"
     url: "https://app.zegami.com"
@@ -141,7 +148,7 @@ contact:
     hear from you.
   cards:
     - label: "Product enquiries and licensing"
-      org: "Videntai Ltd"
+      org: "Videntai"
       orgUrl: "https://videntai.com"
       email: "hello@videntai.com"
     - label: "Implementation, integration, and project work"
@@ -151,5 +158,5 @@ contact:
 
 footer:
   credit: >-
-    Zegami is developed by <a href="https://videntai.com">Videntai Ltd</a>.
+    Zegami is developed by <a href="https://videntai.com">Videntai</a>.
     Born from research at the University of Oxford.

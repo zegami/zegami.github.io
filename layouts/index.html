@@ -3,6 +3,17 @@
 
 {{/* --------------------------------- Hero --------------------------------- */}}
 <section class="hero">
+  {{ with $s.hero.screenshot }}
+    {{ partial "responsive-image.html" (dict
+      "src"              .src
+      "alt"              .alt
+      "widths"           (slice 900 1400 2000 2600)
+      "sizes"            "(max-width: 900px) 100vw, 70vw"
+      "wrapperClass"     "hero__backdrop"
+      "placeholderClass" "hero__backdrop hero__backdrop--placeholder"
+      "loading"          "eager"
+    ) }}
+  {{ end }}
   <div class="container hero__inner">
     <div class="hero__copy">
       <h1 class="hero__headline">{{ $s.hero.headline }}</h1>
@@ -12,17 +23,6 @@
         <a class="button button--outline" href="{{ $s.hero.secondaryCta.url }}">{{ $s.hero.secondaryCta.label }}</a>
       </div>
     </div>
-    {{ with $s.hero.screenshot }}
-      {{ if .src }}
-        <div class="hero__media">
-          <img src="{{ .src }}" alt="{{ .alt }}" loading="eager">
-        </div>
-      {{ else }}
-        <div class="hero__media hero__media--placeholder" role="img" aria-label="{{ .alt }}">
-          <span>Screenshot: {{ .alt }}</span>
-        </div>
-      {{ end }}
-    {{ end }}
   </div>
 </section>
 
@@ -42,13 +42,16 @@
       {{ range $s.capabilities.items }}
         <article class="card">
           {{ with .screenshot }}
-            {{ if .src }}
-              <div class="card__media"><img src="{{ .src }}" alt="{{ .alt }}" loading="lazy"></div>
-            {{ else }}
-              <div class="card__media card__media--placeholder" role="img" aria-label="{{ .alt }}">
-                <span>Screenshot</span>
-              </div>
-            {{ end }}
+            {{ partial "responsive-image.html" (dict
+              "src"              .src
+              "alt"              .alt
+              "widths"           (slice 480 800 1200)
+              "sizes"            "(max-width: 640px) 100vw, (max-width: 1100px) 50vw, 33vw"
+              "wrapperClass"     "card__media"
+              "placeholderClass" "card__media card__media--placeholder"
+              "placeholderLabel" "Screenshot"
+              "loading"          "lazy"
+            ) }}
           {{ end }}
           <h3 class="card__title">{{ .title }}</h3>
           <p class="card__body">{{ .body }}</p>
@@ -65,7 +68,14 @@
     <div class="card-grid card-grid--use-cases">
       {{ range $s.useCases.items }}
         <article class="card card--compact">
-          <h3 class="card__title">{{ .title }}</h3>
+          <div class="card__header">
+            {{ with .icon }}
+              <div class="card__icon" aria-hidden="true">
+                {{ partial (printf "icons/%s.svg" .) . }}
+              </div>
+            {{ end }}
+            <h3 class="card__title">{{ .title }}</h3>
+          </div>
           <p class="card__body">{{ .body }}</p>
         </article>
       {{ end }}

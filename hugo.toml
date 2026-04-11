@@ -19,3 +19,9 @@ disableKinds = ["taxonomy", "term", "RSS"]
 
 [minify]
   minifyOutput = true
+
+# Defaults for Hugo Pipes image processing (resources.Get … | .Resize).
+[imaging]
+  quality = 80
+  resampleFilter = "CatmullRom"
+  anchor = "Smart"

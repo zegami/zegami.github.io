@@ -1,0 +1,79 @@
+{{/*
+  responsive-image.html — renders an image (or a placeholder) using Hugo Pipes.
+
+  For PNG / JPG / JPEG: generates WebP variants at multiple widths and emits
+  a width-descriptor srcset so the browser picks the right size.
+
+  For GIF: passes the original asset through unchanged (resizing would drop
+  frames, since Hugo's .Resize returns a still image). Still fingerprinted
+  for cache busting.
+
+  Falls back to a dashed placeholder when the asset is missing.
+
+  Params (passed via dict):
+    src              asset path, relative to assets/ (e.g. "images/hero.png")
+    alt              alt text (required)
+    sizes            `sizes` attribute value (ignored for GIF)
+    widths           slice of integer widths to generate (ignored for GIF)
+    wrapperClass     class on the wrapper div when the image is present
+    placeholderClass class on the wrapper div when the image is missing
+    placeholderLabel text shown inside the placeholder (falls back to alt)
+    loading          "eager" or "lazy" (defaults to "lazy")
+*/}}
+
+{{ $loading := .loading | default "lazy" }}
+{{ $img := resources.Get .src }}
+
+{{ if $img }}
+  {{ $ext := strings.ToLower (path.Ext .src) }}
+  {{ if eq $ext ".gif" }}
+    {{/* Animated GIFs are passed through as-is to preserve motion. */}}
+    {{ $asset := $img | fingerprint }}
+    <div class="{{ .wrapperClass }}">
+      <img
+        src="{{ $asset.RelPermalink }}"
+        width="{{ $img.Width }}"
+        height="{{ $img.Height }}"
+        alt="{{ .alt }}"
+        loading="{{ $loading }}"
+        decoding="async">
+    </div>
+  {{ else }}
+    {{/* PNG / JPG: resize to WebP variants and emit srcset.
+         Clamp requested widths so we never upscale past the source. */}}
+    {{ $maxWidth := $img.Width }}
+    {{ $variants := slice }}
+    {{ range .widths }}
+      {{ if le . $maxWidth }}
+        {{ $variants = $variants | append . }}
+      {{ end }}
+    {{ end }}
+    {{ if not $variants }}
+      {{ $variants = slice $maxWidth }}
+    {{ end }}
+
+    {{ $srcset := slice }}
+    {{ $largest := "" }}
+    {{ range $variants }}
+      {{ $resized := $img.Resize (printf "%dx webp" .) }}
+      {{ $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink .) }}
+      {{ $largest = $resized }}
+    {{ end }}
+
+    <div class="{{ .wrapperClass }}">
+      <img
+        src="{{ $largest.RelPermalink }}"
+        srcset="{{ delimit $srcset ", " }}"
+        sizes="{{ .sizes }}"
+        width="{{ $largest.Width }}"
+        height="{{ $largest.Height }}"
+        alt="{{ .alt }}"
+        loading="{{ $loading }}"
+        decoding="async">
+    </div>
+  {{ end }}
+{{ else }}
+  <div class="{{ .placeholderClass }}" role="img" aria-label="{{ .alt }}">
+    <span>{{ .placeholderLabel | default (printf "Screenshot: %s" .alt) }}</span>
+  </div>
+{{ end }}
