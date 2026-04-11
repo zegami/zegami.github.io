@@ -18,6 +18,9 @@
     <div class="hero__copy">
       <h1 class="hero__headline">{{ $s.hero.headline }}</h1>
       <p class="hero__subheadline">{{ $s.hero.subheadline }}</p>
+      {{ with $s.hero.tagline }}
+        <p class="hero__tagline">{{ . }}</p>
+      {{ end }}
       <div class="hero__ctas">
         <a class="button button--primary" href="{{ $s.hero.primaryCta.url }}">{{ $s.hero.primaryCta.label }}</a>
         <a class="button button--outline" href="{{ $s.hero.secondaryCta.url }}">{{ $s.hero.secondaryCta.label }}</a>
@@ -107,31 +110,26 @@
   </div>
 </section>
 
-{{/* ------------------------------ Examples ------------------------------- */}}
-<section class="section section--white">
-  <div class="container section__narrow">
-    <h2 class="section__heading section__heading--centered">{{ $s.examples.heading }}</h2>
-    <p class="section__body section__body--centered">{{ $s.examples.body }}</p>
-    <div class="section__cta">
-      <a class="button button--primary" href="{{ $s.examples.cta.url }}">{{ $s.examples.cta.label }}</a>
-    </div>
-  </div>
-</section>
-
 {{/* ------------------------------- Contact ------------------------------- */}}
-<section id="contact" class="section">
-  <div class="container">
+<section id="contact" class="section section--white">
+  <div class="container section__narrow">
     <h2 class="section__heading section__heading--centered">{{ $s.contact.heading }}</h2>
     <p class="section__body section__body--centered">{{ $s.contact.body }}</p>
-    <div class="card-grid card-grid--contact">
-      {{ range $s.contact.cards }}
-        <article class="card card--contact">
-          <p class="card__label">{{ .label }}</p>
-          <h3 class="card__title"><a href="{{ .orgUrl }}">{{ .org }}</a></h3>
-          <p class="card__body"><a href="mailto:{{ .email }}">{{ .email }}</a></p>
-        </article>
+    <div class="section__cta">
+      {{ with $s.contact.primaryCta }}
+        {{ if .url }}
+          <a class="button button--primary" href="{{ .url }}">{{ .label }}</a>
+        {{ end }}
+      {{ end }}
+      {{ with $s.contact.secondaryCta }}
+        {{ if .url }}
+          <a class="button button--outline" href="{{ .url }}">{{ .label }}</a>
+        {{ end }}
       {{ end }}
     </div>
+    {{ with $s.contact.credit }}
+      <p class="contact__credit">{{ . | safeHTML }}</p>
+    {{ end }}
   </div>
 </section>
 

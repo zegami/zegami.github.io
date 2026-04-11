@@ -7,6 +7,7 @@ hero:
     Zegami is a visual data exploration platform that lets you interactively
     browse, filter, and compare thousands of data points: images, documents,
     time series, geospatial, all in a single view.
+  tagline: "If you can use a web browser, you can use Zegami."
   primaryCta:
     label: "Explore examples"
     url: "https://app.zegami.com"
@@ -81,7 +82,7 @@ useCases:
         use Zegami to visually QA and explore imaging datasets that are too
         large to review manually.
     - title: "Environmental monitoring"
-      icon: "leaf"
+      icon: "tree-pine"
       body: >-
         Camera trap review, biodiversity surveys, habitat assessment. Explore
         species detections across sites, time periods, and sensor types in a
@@ -103,7 +104,7 @@ howItWorks:
   steps:
     - title: "Connect your data"
       body: >-
-        From a simple spreadsheet, connect to an API, or point Zegami at an image
+        Upload a spreadsheet, connect to an API, or point Zegami at an image
         folder. Structured and unstructured data, together.
     - title: "Explore visually"
       body: >-
@@ -113,50 +114,39 @@ howItWorks:
     - title: "Share and collaborate"
       body: >-
         Publish collections for your team or publicly. Save views. Export
-        filtered subsets. No training required, if you can use a web browser,
-        you can use Zegami.
+        filtered subsets. No training required.
 
 differentiator:
-  heading: "Not a dashboard. Not a database."
+  heading: "Built for real-world data at scale"
   body: |
-    Dashboards aggregate your data into charts. Databases let you query it.
-    Zegami lets you *see* it every item, every image, every data point
-    and navigate it visually.
-
-    Built for datasets with thousands to millions of records. Born from
-    research at the University of Oxford. Used in production by research
-    institutions, government agencies, and commercial organisations.
-
-examples:
-  heading: "See it in action"
-  body: >-
-    Browse public collections on Zegami no account needed.
-  cta:
-    label: "Explore examples"
-    url: "https://app.zegami.com"
-  # TODO: populate with curated collections once app.zegami.com is updated.
-  # items:
-  #   - title: "Plant phenotyping"
-  #     description: "50,000 growth chamber images from the Australian Plant Phenomics Facility"
-  #     url: "https://app.zegami.com/..."
-  #     thumbnail: ""
+    Born from research at the University of Oxford and developed over ten
+    years, Zegami is used in production by research institutions, government
+    agencies, and commercial organisations worldwide.
+  # TODO: swap the generic line above for a concrete fact when comfortable,
+  # e.g. "Deployed across collections containing over 5 million records" or
+  # "Used by the University of Oxford, the National Herbarium of Victoria,
+  # and the Australian Plant Phenomics Facility." One line of specificity
+  # beats three paragraphs of positioning.
 
 contact:
-  heading: "Let's talk about your data"
+  heading: "Get in touch"
   body: >-
     Whether you're exploring a new use case or ready to deploy, we'd like to
     hear from you.
-  cards:
-    - label: "Product enquiries and licensing"
-      org: "Videntai"
-      orgUrl: "https://videntai.com"
-      email: "hello@videntai.com"
-    - label: "Implementation, integration, and project work"
-      org: "Noble Dynamic"
-      orgUrl: "https://nobledynamic.com"
-      email: "roger@nobledynamic.com"
+  primaryCta:
+    label: "roger@nobledynamic.com"
+    url: "mailto:roger@nobledynamic.com"
+  # Leave `url` empty to hide the secondary CTA — set to a Calendly or
+  # similar booking link when one exists.
+  secondaryCta:
+    label: "Book a call"
+    url: ""
+  credit: >-
+    Zegami is developed and licensed by
+    <a href="https://videntai.com">Videntai</a>. Implementation and project
+    work by <a href="https://nobledynamic.com">Noble Dynamic</a>.
 
 footer:
-  credit: >-
-    Zegami is developed by <a href="https://videntai.com">Videntai</a>.
-    Born from research at the University of Oxford.
+  # Credit field intentionally omitted — the template falls through to the
+  # copyright line on its own. Add a `credit` back here only if you want
+  # something above the © line.

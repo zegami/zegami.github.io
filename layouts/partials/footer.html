@@ -1,8 +1,10 @@
-{{ with site.Data.site.footer }}
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <p class="site-footer__credit">{{ .credit | safeHTML }}</p>
+    {{ with site.Data.site.footer }}
+      {{ with .credit }}
+        <p class="site-footer__credit">{{ . | safeHTML }}</p>
+      {{ end }}
+    {{ end }}
     <p class="site-footer__copyright">&copy; {{ now.Year }} Videntai Ltd.</p>
   </div>
 </footer>
-{{ end }}
