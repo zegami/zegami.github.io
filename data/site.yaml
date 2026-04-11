@@ -1,0 +1,155 @@
+# Page content for zegami.com. Edit copy here — layouts read from this file.
+# Sections correspond 1:1 with the draft in docs/content.md.
+
+hero:
+  headline: "See your data. All of it."
+  subheadline: >-
+    Zegami is a visual data exploration platform that lets you interactively
+    browse, filter, and compare thousands of data points — images, documents,
+    time series, geospatial — in a single view.
+  primaryCta:
+    label: "Explore examples"
+    url: "https://app.zegami.com"
+  secondaryCta:
+    label: "Get in touch"
+    url: "#contact"
+  # Screenshot slot — replace with an actual image once captured.
+  screenshot:
+    src: ""
+    alt: "Zegami collection view showing a grid of image tiles with a filter panel"
+
+problem:
+  heading: "Your data is bigger than your tools"
+  body: |
+    Spreadsheets flatten everything into rows. Dashboards show you summaries.
+    Neither lets you actually look at your data.
+
+    Zegami gives you the full picture — literally. Lay out thousands of images,
+    data points, or documents visually. Filter, sort, group, and zoom in on
+    what matters. Spot patterns that no chart would show you.
+
+capabilities:
+  heading: "One platform. Every data type."
+  items:
+    - title: "Visual exploration"
+      body: >-
+        Browse thousands of items as a visual grid. Sort, filter, and group by
+        any field. Zoom from overview to individual record in a click.
+      screenshot:
+        src: ""
+        alt: "Grid view with colour-coded grouping"
+    - title: "Image collections"
+      body: >-
+        Purpose-built for datasets where images matter — camera traps,
+        microscopy, aerial surveys, historical archives. See images alongside
+        metadata, not buried in folders.
+      screenshot:
+        src: ""
+        alt: "Image collection with metadata panel open"
+    - title: "Geospatial"
+      body: >-
+        Plot your data on a map. Filter spatially. Understand how location
+        relates to everything else in your dataset.
+      screenshot:
+        src: ""
+        alt: "Map view with clustered points"
+    - title: "Time series & charts"
+      body: >-
+        Layer in temporal data. Compare trends across groups. Link chart
+        selections back to individual records.
+      screenshot:
+        src: ""
+        alt: "Chart and time series view"
+    - title: "Filtering & faceting"
+      body: >-
+        Combine filters across any dimension — numeric ranges, categories,
+        text search, date ranges. Every filter updates every view in real time.
+      screenshot:
+        src: ""
+        alt: "Filter panel with multiple active filters"
+
+useCases:
+  heading: "Proven across sectors"
+  items:
+    - title: "Life sciences"
+      body: >-
+        High-throughput imaging, phenotyping, pathology, microscopy. Researchers
+        use Zegami to visually QA and explore imaging datasets that are too
+        large to review manually.
+    - title: "Environmental monitoring"
+      body: >-
+        Camera trap review, biodiversity surveys, habitat assessment. Explore
+        species detections across sites, time periods, and sensor types in a
+        single view.
+    - title: "Digital humanities"
+      body: >-
+        Museum collections, historical archives, manuscript analysis. Scholars
+        use Zegami to explore and annotate large visual collections without
+        specialist software.
+    - title: "Industrial & enterprise"
+      body: >-
+        Quality control imaging, asset inspection, document review. Any
+        workflow where people need to visually assess large volumes of data.
+
+howItWorks:
+  heading: "From data to insight in minutes"
+  steps:
+    - title: "Connect your data"
+      body: >-
+        Upload a spreadsheet, connect to an API, or point Zegami at an image
+        folder. Structured and unstructured data, together.
+    - title: "Explore visually"
+      body: >-
+        Every record becomes a tile. Filter, sort, and group across any
+        combination of fields. Switch between grid, map, chart, and detail
+        views.
+    - title: "Share and collaborate"
+      body: >-
+        Publish collections for your team or publicly. Save views. Export
+        filtered subsets. No training required — if you can use a web browser,
+        you can use Zegami.
+
+differentiator:
+  heading: "Not a dashboard. Not a database."
+  body: |
+    Dashboards aggregate your data into charts. Databases let you query it.
+    Zegami lets you *see* it — every item, every image, every data point —
+    and navigate it visually.
+
+    Built for datasets with thousands to millions of records. Born from
+    research at the University of Oxford. Used in production by research
+    institutions, government agencies, and commercial organisations.
+
+examples:
+  heading: "See it in action"
+  body: >-
+    Browse public collections on Zegami — no account needed.
+  cta:
+    label: "Explore examples"
+    url: "https://app.zegami.com"
+  # TODO: populate with curated collections once app.zegami.com is updated.
+  # items:
+  #   - title: "Plant phenotyping"
+  #     description: "50,000 growth chamber images from the Australian Plant Phenomics Facility"
+  #     url: "https://app.zegami.com/..."
+  #     thumbnail: ""
+
+contact:
+  heading: "Let's talk about your data"
+  body: >-
+    Whether you're exploring a new use case or ready to deploy, we'd like to
+    hear from you.
+  cards:
+    - label: "Product enquiries and licensing"
+      org: "Videntai Ltd"
+      orgUrl: "https://videntai.com"
+      email: "hello@videntai.com"
+    - label: "Implementation, integration, and project work"
+      org: "Noble Dynamic"
+      orgUrl: "https://nobledynamic.com"
+      email: "roger@nobledynamic.com"
+
+footer:
+  credit: >-
+    Zegami is developed by <a href="https://videntai.com">Videntai Ltd</a>.
+    Born from research at the University of Oxford.

@@ -1,0 +1,69 @@
+{
+  "name": "zegami.com (Hugo)",
+  "image": "mcr.microsoft.com/devcontainers/base:bookworm",
+
+  // Mount the workspace at the same absolute path the host uses, so
+  // Claude Code's session-file lookup (keyed by project path) matches across
+  // host and container. See ~/.claude/projects/<url-encoded-path>/.
+  "workspaceMount": "source=${localWorkspaceFolder},target=/var/home/roger/Projects/zegami/zegami.github.io,type=bind,consistency=cached",
+  "workspaceFolder": "/var/home/roger/Projects/zegami/zegami.github.io",
+
+  "mounts": [
+    // Share Claude Code state (sessions, memory, settings) with the host.
+    // NOTE: this exposes host ~/.claude (including any MCP configs and auth
+    // tokens) to the container — fine for a trusted local devcontainer, not
+    // for remote/shared environments.
+    "source=${localEnv:HOME}/.claude,target=/home/vscode/.claude,type=bind,consistency=cached"
+  ],
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true,
+      "configureZshAsDefaultShell": false,
+      "upgradePackages": true
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    // Node.js is a prerequisite for the Claude Code CLI feature below.
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    },
+    // Claude Code CLI inside the container, so the VS Code extension can
+    // launch it when the session continues from within the devcontainer.
+    // This feature also contributes the anthropic.claude-code VS Code extension.
+    "ghcr.io/anthropics/devcontainer-features/claude-code:1": {}
+  },
+
+  "containerEnv": {
+    "HUGO_VERSION": "0.160.1"
+  },
+
+  "onCreateCommand": "bash .devcontainer/install-hugo.sh",
+
+  "forwardPorts": [1313],
+  "portsAttributes": {
+    "1313": {
+      "label": "Hugo dev server",
+      "onAutoForward": "notify"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      // anthropic.claude-code is contributed automatically by the claude-code feature.
+      "extensions": [
+        "budparr.language-hugo-vscode",
+        "bungcip.better-toml",
+        "esbenp.prettier-vscode",
+        "editorconfig.editorconfig"
+      ],
+      "settings": {
+        "files.associations": {
+          "*.html": "gohtml"
+        }
+      }
+    }
+  },
+
+  "remoteUser": "vscode",
+  "postCreateCommand": "hugo version && claude --version || true"
+}

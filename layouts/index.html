@@ -1,0 +1,128 @@
+{{ define "main" }}
+{{ $s := site.Data.site }}
+
+{{/* --------------------------------- Hero --------------------------------- */}}
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <h1 class="hero__headline">{{ $s.hero.headline }}</h1>
+      <p class="hero__subheadline">{{ $s.hero.subheadline }}</p>
+      <div class="hero__ctas">
+        <a class="button button--primary" href="{{ $s.hero.primaryCta.url }}">{{ $s.hero.primaryCta.label }}</a>
+        <a class="button button--outline" href="{{ $s.hero.secondaryCta.url }}">{{ $s.hero.secondaryCta.label }}</a>
+      </div>
+    </div>
+    {{ with $s.hero.screenshot }}
+      {{ if .src }}
+        <div class="hero__media">
+          <img src="{{ .src }}" alt="{{ .alt }}" loading="eager">
+        </div>
+      {{ else }}
+        <div class="hero__media hero__media--placeholder" role="img" aria-label="{{ .alt }}">
+          <span>Screenshot: {{ .alt }}</span>
+        </div>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+
+{{/* ------------------------------- Problem ------------------------------- */}}
+<section class="section section--white">
+  <div class="container section__narrow">
+    <h2 class="section__heading">{{ $s.problem.heading }}</h2>
+    <div class="section__body">{{ $s.problem.body | markdownify }}</div>
+  </div>
+</section>
+
+{{/* ----------------------------- Capabilities ---------------------------- */}}
+<section id="capabilities" class="section">
+  <div class="container">
+    <h2 class="section__heading section__heading--centered">{{ $s.capabilities.heading }}</h2>
+    <div class="card-grid card-grid--capabilities">
+      {{ range $s.capabilities.items }}
+        <article class="card">
+          {{ with .screenshot }}
+            {{ if .src }}
+              <div class="card__media"><img src="{{ .src }}" alt="{{ .alt }}" loading="lazy"></div>
+            {{ else }}
+              <div class="card__media card__media--placeholder" role="img" aria-label="{{ .alt }}">
+                <span>Screenshot</span>
+              </div>
+            {{ end }}
+          {{ end }}
+          <h3 class="card__title">{{ .title }}</h3>
+          <p class="card__body">{{ .body }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ------------------------------ Use cases ------------------------------ */}}
+<section id="use-cases" class="section section--white">
+  <div class="container">
+    <h2 class="section__heading section__heading--centered">{{ $s.useCases.heading }}</h2>
+    <div class="card-grid card-grid--use-cases">
+      {{ range $s.useCases.items }}
+        <article class="card card--compact">
+          <h3 class="card__title">{{ .title }}</h3>
+          <p class="card__body">{{ .body }}</p>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{/* ---------------------------- How it works ----------------------------- */}}
+<section class="section">
+  <div class="container">
+    <h2 class="section__heading section__heading--centered">{{ $s.howItWorks.heading }}</h2>
+    <ol class="steps">
+      {{ range $i, $step := $s.howItWorks.steps }}
+        <li class="steps__item">
+          <span class="steps__number">{{ add $i 1 }}</span>
+          <h3 class="steps__title">{{ $step.title }}</h3>
+          <p class="steps__body">{{ $step.body }}</p>
+        </li>
+      {{ end }}
+    </ol>
+  </div>
+</section>
+
+{{/* ---------------------------- Differentiator --------------------------- */}}
+<section class="section section--accent">
+  <div class="container section__narrow">
+    <h2 class="section__heading">{{ $s.differentiator.heading }}</h2>
+    <div class="section__body">{{ $s.differentiator.body | markdownify }}</div>
+  </div>
+</section>
+
+{{/* ------------------------------ Examples ------------------------------- */}}
+<section class="section section--white">
+  <div class="container section__narrow">
+    <h2 class="section__heading section__heading--centered">{{ $s.examples.heading }}</h2>
+    <p class="section__body section__body--centered">{{ $s.examples.body }}</p>
+    <div class="section__cta">
+      <a class="button button--primary" href="{{ $s.examples.cta.url }}">{{ $s.examples.cta.label }}</a>
+    </div>
+  </div>
+</section>
+
+{{/* ------------------------------- Contact ------------------------------- */}}
+<section id="contact" class="section">
+  <div class="container">
+    <h2 class="section__heading section__heading--centered">{{ $s.contact.heading }}</h2>
+    <p class="section__body section__body--centered">{{ $s.contact.body }}</p>
+    <div class="card-grid card-grid--contact">
+      {{ range $s.contact.cards }}
+        <article class="card card--contact">
+          <p class="card__label">{{ .label }}</p>
+          <h3 class="card__title"><a href="{{ .orgUrl }}">{{ .org }}</a></h3>
+          <p class="card__body"><a href="mailto:{{ .email }}">{{ .email }}</a></p>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
+{{ end }}

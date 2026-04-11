@@ -1,0 +1,21 @@
+baseURL = "https://zegami.github.io/"
+languageCode = "en-gb"
+title = "Zegami — Visual data exploration"
+enableRobotsTXT = true
+
+# Single-page landing site; disable taxonomies we don't need.
+disableKinds = ["taxonomy", "term", "RSS"]
+
+[params]
+  description = "Zegami is a visual data exploration platform. Interactively browse, filter, and compare thousands of images, documents, time series, and geospatial data points in a single view."
+  author = "Videntai Ltd"
+  # Primary CTAs surfaced in hero and nav
+  appUrl = "https://app.zegami.com"
+  videntaiUrl = "https://videntai.com"
+  nobleDynamicUrl = "https://nobledynamic.com"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[minify]
+  minifyOutput = true
